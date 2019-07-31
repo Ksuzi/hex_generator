@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hex Color Generator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1 id="color"></h1>
+        <script src="scripts.js"></script>
+        <button id="change">Generate Color</button>
+    </div>
+
+    <script>
+        const btn = document.querySelector('#change');
+        const text = document.querySelector('#color');
+        
+        let newColor;
+        
+        function generator() {
+            newColor = '#' + (Math.random()*0xFFFFFF<<0).toString(16);
+            if(newColor.length < 7){
+                generator();
+            }
+
+            document.body.style.background = newColor;
+            btn.style.color = newColor;
+            text.innerText = newColor;
+        }
+        
+        
+        document.addEventListener('DOMContentLoaded', generator);
+        btn.addEventListener('click', generator);
+    </script>
+</body>
+</html>
